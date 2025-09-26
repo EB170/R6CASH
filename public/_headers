@@ -2,7 +2,7 @@
   Content-Security-Policy: default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    style-src-elem 'self' https://fonts.googleapis.com 'unsafe-inline';
     font-src 'self' https://fonts.gstatic.com data:;
     img-src * data:;
     connect-src 'self' https://ykseqqeabceslsgzzuta.supabase.co wss://ykseqqeabceslsgzzuta.supabase.co https://api.stripe.com https://api.dicebear.com;
