@@ -25,7 +25,7 @@ export interface Game {
 export interface GamePlayer {
   id: string
   game_id: string
-  user_id: string
+  profile_id: string
   joined_at: string
   user_profile?: {
     id: string
@@ -108,7 +108,7 @@ export const getAvailableGames = async () => {
 
     // 3) profils (créateurs + joueurs)
     const creatorIds = Array.from(new Set(games.map(g => g.creator_id)));
-    const playerUserIds = Array.from(new Set((players ?? []).map(p => p.user_id)));
+    const playerUserIds = Array.from(new Set((players ?? []).map(p => p.profile_id)));
     const profileIds = Array.from(new Set([...creatorIds, ...playerUserIds]));
     const { data: profiles, error: profErr } = await supabase
       .from('profiles')
@@ -130,7 +130,7 @@ export const getAvailableGames = async () => {
       creator_profile: profileMap.get(g.creator_id) ?? null,
       players: (playersByGame.get(g.id) ?? []).map(p => ({
         ...p,
-        user_profile: profileMap.get(p.user_id) ?? null
+        user_profile: profileMap.get(p.profile_id) ?? null
       }))
     })) as Game[];
 
@@ -156,7 +156,7 @@ export async function getUserGames(userId: string) {
     const { data: myGP, error: gpErr } = await supabase
       .from('game_players')
       .select('game_id')
-      .eq('user_id', userId);
+      .eq('profile_id', userId);
 
     if (gpErr) console.warn('getUserGames/my game_players warn:', gpErr);
 
@@ -185,7 +185,7 @@ export async function getUserGames(userId: string) {
 
     // 5) profils (créateurs + joueurs)
     const creatorIds = Array.from(new Set(allGames.map(g => g.creator_id)));
-    const playerUserIds = Array.from(new Set((players ?? []).map(p => p.user_id)));
+    const playerUserIds = Array.from(new Set((players ?? []).map(p => p.profile_id)));
     const profileIds = Array.from(new Set([...creatorIds, ...playerUserIds]));
     const { data: profiles, error: profErr } = await supabase
       .from('profiles')
@@ -207,7 +207,7 @@ export async function getUserGames(userId: string) {
       creator_profile: profileMap.get(g.creator_id) ?? null,
       players: (playersByGame.get(g.id) ?? []).map(p => ({
         ...p,
-        user_profile: profileMap.get(p.user_id) ?? null
+        user_profile: profileMap.get(p.profile_id) ?? null
       }))
     })) as Game[];
 
@@ -223,7 +223,7 @@ export const getUserProfile = async (userId: string) => {
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('id', userId) // ✅ id est la PK, pas user_id
+    .eq('id', userId) // ✅ id est la PK, pas profile_id
     .maybeSingle()
   if (error) throw error
   return data as UserProfile | null
