@@ -1,8 +1,13 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Une seule CSP (inclut wss + https Supabase)
+    Content-Security-Policy = "default-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.stripe.com https://api.dicebear.com data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src * data: blob:;"
+
 [build]
   command = "npm run build"
-  publish = "dist" # ⚡ si tu utilises CRA, mets "build"
+  publish = "dist"
 
-# ✅ Redirection React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"
