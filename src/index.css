@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* R6Cash Design System - Neon Green Gaming Theme
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Main backgrounds - Deep blacks for esports feel */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    /* Card system - Dark with subtle green tints */
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    /* Popover system */
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary - Neon Green (#a2fc4e) */
+    --primary: 82 96% 64%;
+    --primary-foreground: 0 0% 5%;
+    --primary-glow: 82 96% 74%;
+
+    /* Secondary - Dark cards with green tint */
+    --secondary: 82 15% 12%;
+    --secondary-foreground: 0 0% 90%;
+
+    /* Muted tones with subtle green */
+    --muted: 82 10% 10%;
+    --muted-foreground: 82 8% 65%;
+
+    /* Accent - Brighter neon green */
+    --accent: 82 100% 70%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Destructive - Red for danger */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Success - Neon green success */
+    --success: 82 96% 64%;
+    --success-foreground: 0 0% 5%;
+
+    /* Warning - Orange for medium stakes */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+
+    /* High stakes - Red warning */
+    --high-stake: 0 85% 55%;
+    --high-stake-foreground: 0 0% 98%;
+
+    /* Borders and inputs - Dark with green accent */
+    --border: 82 20% 15%;
+    --input: 82 15% 12%;
+    --ring: 82 96% 64%;
+
+    /* Neon effects and glows */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(82 100% 80%));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(82 8% 12%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 3%), hsl(82 5% 8%));
+    --gradient-neon: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+
+    /* Neon shadows and glows */
+    --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.4);
+    --shadow-accent: 0 10px 30px -10px hsl(var(--accent) / 0.4);
+    --shadow-card: 0 8px 25px hsl(0 0% 0% / 0.6);
+    --glow-primary: 0 0 20px hsl(var(--primary) / 0.6);
+    --glow-accent: 0 0 25px hsl(var(--accent) / 0.8);
+    --glow-intense: 0 0 40px hsl(var(--primary) / 0.9);
+
+    /* Neon text effects */
+    --text-shadow-neon: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary));
+    --text-shadow-subtle: 0 0 5px hsl(var(--primary) / 0.5);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+    --transition-neon: all 0.3s ease-out;
+
+    --radius: 0.75rem;
+
+    /* Sidebar - Dark theme compatible */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 82 96% 64%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 82 15% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 82 20% 15%;
+    --sidebar-ring: 82 96% 64%;
+  }
+
+  /* Neon gaming utility classes */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  .glow-intense {
+    box-shadow: var(--glow-intense);
+  }
+
+  .drop-shadow-neon {
+    filter: drop-shadow(0 0 15px hsl(var(--primary))) drop-shadow(0 0 30px hsl(var(--primary))) drop-shadow(0 0 45px hsl(var(--primary)));
+  }
+
+  .text-neon {
+    text-shadow: var(--text-shadow-neon);
+    color: hsl(var(--primary));
+  }
+
+  .text-neon-subtle {
+    text-shadow: var(--text-shadow-subtle);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+
+  .transition-neon {
+    transition: var(--transition-neon);
+  }
+
+  /* Neon border animation */
+  .neon-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-neon);
+    transition: left 0.5s;
+  }
+
+  .neon-border:hover::before {
+    left: 100%;
+  }
+
+  /* Gaming font */
+  body {
+    font-family: 'Oswald', sans-serif;
+  }
+
+  /* Custom keyframe animations */
+  @keyframes pulse-neon {
+    0%, 100% {
+      text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+    }
+    50% {
+      text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary));
+    }
+  }
+
+  @keyframes neon-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary));
+    }
+    50% {
+      box-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary));
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation utility classes */
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite;
+  }
+
+  .animate-neon-glow {
+    animation: neon-glow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.5s ease-out;
+  }
+
+  /* Hover effects for gaming buttons */
+  .hover\\:glow-primary:hover {
+    box-shadow: var(--glow-primary), var(--shadow-primary);
+    transform: translateY(-2px);
+  }
+
+  .hover\\:glow-intense:hover {
+    box-shadow: var(--glow-intense);
+    transform: translateY(-3px);
+  }
+
+  /* Loading spinner */
+  .loading-spinner {
+    border: 2px solid transparent;
+    border-top: 2px solid hsl(var(--primary));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Améliorations pour mobile */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 2px;
+  }
+
+  /* Sécurisation des entrées sur mobile */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Éviter le zoom sur les inputs iOS */
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Touch-friendly buttons */
+  @media (hover: none) and (pointer: coarse) {
+    .touch-friendly {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Safe area pour les notches */
+  @supports (padding-top: env(safe-area-inset-top)) {
+    .safe-area-top {
+      padding-top: env(safe-area-inset-top);
+    }
+    
+    .safe-area-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}

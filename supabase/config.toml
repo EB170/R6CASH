@@ -1,0 +1,53 @@
+project_id = "ykseqqeabceslsgzzuta"
+
+[api]
+enabled = true
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://ykseqqeabceslsgzzuta.supabase.co"]
+jwt_expiry = 3600
+
+[db]
+
+[functions.deposit-payment]
+verify_jwt = true
+
+[functions.verify-payment]
+verify_jwt = true
+
+[functions.process-withdrawal]
+verify_jwt = true
+
+[functions.security-monitoring]
+verify_jwt = true
+
+[functions.game-verification]
+verify_jwt = false
+
+[functions.log-system-error]
+verify_jwt = true
+
+[functions.system-health]
+verify_jwt = true
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+image_transformation.enabled = true
+
+[edge_runtime]
+enabled = true
+
+[analytics]
+enabled = true
+
+[inbucket]
+enabled = true
+
+[realtime]
+enabled = true
